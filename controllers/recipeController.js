@@ -1,5 +1,6 @@
 const Recipe = require('../models/recipe');
-const escapeRegExp = require('escape-string-regexp');
+let escapeStringRegexp
+import('escape-string-regexp').then((result) => {escapeStringRegexp = result});
 const session = require('express-session');
 const fs = require("fs");
 const path = require('path');
@@ -11,7 +12,7 @@ const recipe_index = (req, res) => {
             recipes = Recipe.find();
         }
         else if(typeof(ingredients) === "string") {
-            recipes = Recipe.find({ingredients:RegExp(ingredients)})
+            recipes = Recipe.find({ingredients:escapeStringRegexp(ingredients)})
         }
         else {
             let regexp = [];
