@@ -105,15 +105,15 @@ const recipe_patch = (req, res) => {
         console.log(err)
     });
 };
-const recipe_upload_image = (req, res) => {
-    const pathString = process.env.RECIPE_IM_PATH + req.file.originalname
-    const newPath = path.join(__dirname, "../../Frontend/public/"+pathString)
-    if(fs.existsSync(newPath)) {
-        fs.unlink(newPath, ()=>{})
-    }
-    fs.rename(req.file.path, newPath, err => {if(err) {console.log(err)}});
-    return res.json({"path": pathString})
-}
+// const recipe_upload_image = (req, res) => {
+//     const pathString = process.env.RECIPE_IM_PATH + req.file.originalname
+//     const newPath = path.join(__dirname, "../../Frontend/public/"+pathString)
+//     if(fs.existsSync(newPath)) {
+//         fs.unlink(newPath, ()=>{})
+//     }
+//     fs.rename(req.file.path, newPath, err => {if(err) {console.log(err)}});
+//     return res.json({"path": pathString})
+// }
  
 
 module.exports = {
@@ -123,5 +123,5 @@ module.exports = {
     recipe_create_post,
     recipe_delete,
     recipe_patch, 
-    recipe_upload_image
+    // recipe_upload_image
 };
